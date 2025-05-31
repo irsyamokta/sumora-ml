@@ -10,7 +10,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-model_path = os.path.join("app", "models", "model.pkl")
+model_path = os.path.join("app", "models", "random_forest_model.pkl")
 imputer_path = os.path.join("app", "preprocessing", "imputer.pkl")
 scaler_path = os.path.join("app", "preprocessing", "scaler.pkl")
 
@@ -18,11 +18,9 @@ model = joblib.load(model_path)
 imputer = joblib.load(imputer_path)
 scaler = joblib.load(scaler_path)
 
-
 @app.get("/")
 def read_root():
     return {"message": "Water Quality Classification API is running."}
-
 
 @app.post("/predict")
 def predict_water_quality(data: WaterQualityInput):
